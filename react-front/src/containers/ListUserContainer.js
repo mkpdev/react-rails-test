@@ -25,7 +25,7 @@ class ListUserContainer extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { allUsers, errors, totalPages } = this.props;
+    const { allUsers, totalPages } = this.props;
     if(prevProps.allUsers !== allUsers)
       this.setState({ allUsers })
     if(prevProps.totalPages !== totalPages)
