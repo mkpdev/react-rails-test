@@ -18,6 +18,14 @@ class LoginContainer extends Component {
 
   }
 
+  componentDidMount() {
+    const { currentUser } = this.props;
+    if(currentUser) {
+      const url = currentUser.role === 'admin' ? '/dashboard' : '/home';
+      this.props.history.push(url);
+    }
+  }
+
   async componentDidUpdate() {
     const { currentUser, errors } = this.props;
     if(currentUser) {

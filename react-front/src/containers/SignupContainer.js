@@ -21,6 +21,14 @@ class SignupContainer extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount() {
+      const { currentUser } = this.props;
+      if(currentUser) {
+        const url = currentUser.role === 'admin' ? '/dashboard' : '/home';
+        this.props.history.push(url);
+      }
+    }
+
     handleChange(event){
       this.setState({ [event.target.name]: event.target.value });
     }

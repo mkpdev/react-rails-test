@@ -11,18 +11,21 @@ import PrivateRoutes from './PrivateRoutes';
 
 class App extends Component {
   render() {
-    console.log('Routes props', this.props.currentUser);
     return (
       <div className="App">
-      {localStorage.length > 0 && <button onClick={() => { localStorage.clear(); window.location.href = '/' }}>Logout</button>}
+      {this.props.currentUser && <button onClick={() => { localStorage.clear(); window.location.href = '/' }}>Logout</button>}
       <Router>
 					<div>
 						<Route path="/Signup" component={SignupContainer} />
 						<Route exact path ='/' component ={LoginContainer}/>
-            <PrivateRoutes path="/home" component={Home} authed={this.props.currentUser  && this.props.currentUser.role==='user'} />
-            <PrivateRoutes path="/create" component={AddEditUserContainer} authed={this.props.currentUser && this.props.currentUser.role==='admin'} />
-            <PrivateRoutes path="/edit/:id" component={AddEditUserContainer} authed={this.props.currentUser && this.props.currentUser.role==='admin'} />
-            <PrivateRoutes exact path="/dashboard" component={ListUserContainer} authed={this.props.currentUser && this.props.currentUser.role==='admin'} />
+            <PrivateRoutes path="/home" component={Home} authed={this.props.currentUser} 
+              isAccessible={this.props.currentUser  && this.props.currentUser.role==='user'} rootRedirect='dashboard' />
+            <PrivateRoutes path="/create" component={AddEditUserContainer} authed={this.props.currentUser} 
+              isAccessible={this.props.currentUser && this.props.currentUser.role==='admin'} rootRedirect='home' />
+            <PrivateRoutes path="/edit/:id" component={AddEditUserContainer} authed={this.props.currentUser} 
+              isAccessible={this.props.currentUser && this.props.currentUser.role==='admin'} rootRedirect='home' />
+            <PrivateRoutes exact path="/dashboard" component={ListUserContainer} authed={this.props.currentUser} 
+              isAccessible={this.props.currentUser && this.props.currentUser.role==='admin'} rootRedirect='home' />
           </div>
 				</Router>
       </div>
