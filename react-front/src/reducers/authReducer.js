@@ -7,6 +7,7 @@ const initialState = {
   errors: null
 }
 
+// Receive response from saga and update state accordingly action type return by saga.
 export default function(state=initialState, action) {
 	
   switch(action.type){

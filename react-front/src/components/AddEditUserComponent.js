@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// It is presentational UI for add/edit form.
 export const AddEditUserComponent = props => 
   (
     <div className="container">

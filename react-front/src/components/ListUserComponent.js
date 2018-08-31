@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// It is presentational UI for List of users.
+// It contains list of users, filter by role dropdown, search textbox and pagination options.
 export const ListUserComponent = props => 
   (
   <div>

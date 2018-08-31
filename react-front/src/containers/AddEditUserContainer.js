@@ -4,6 +4,7 @@ import { AddEditUserComponent } from '../components/AddEditUserComponent';
 import { bindActionCreators } from 'redux';
 import { create, edit, show } from '../actions/userAction';
 
+// This container is build to manage Add/Edit functionality of user.
 class AddEditUserContainer extends Component { 
   constructor(){
     super();
@@ -21,6 +22,8 @@ class AddEditUserContainer extends Component {
       await this.props.show(id);
   }
 
+  // It will call whenever any changes detected in props or state. 
+  // Used to manage state on receiving new response.
   componentDidUpdate(prevProps, prevState) {
     const { errors } = this.props;
     if(this.props.user) {
@@ -36,10 +39,12 @@ class AddEditUserContainer extends Component {
     }
   }
 
+  // It will handle change in inputs and set state according to inserted input value.
   handleChange(event) {
     this.setState({user: {...this.state.user, [event.target.name]: event.target.value }});
   }
 
+  // This function call action to create or update user data based on condition. 
   async handleSubmit(event) {
     event.preventDefault();
     const { user } = this.state;
@@ -49,8 +54,8 @@ class AddEditUserContainer extends Component {
     await this.props.create(user);
   }
 
+  // It will render component which is display UI.
   render() {
-    console.log(this.state);
     return (
       <AddEditUserComponent {...this.state} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
     )

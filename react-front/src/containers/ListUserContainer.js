@@ -24,6 +24,8 @@ class ListUserContainer extends Component {
     await this.props.list();
   }
 
+  // It will call whenever any changes detected in props or state. 
+  // Used to manage state on receiving new response.
   componentDidUpdate(prevProps, prevState) {
     const { allUsers, totalPages } = this.props;
     if(prevProps.allUsers !== allUsers)
@@ -32,17 +34,20 @@ class ListUserContainer extends Component {
       this.setState({ totalPages });
   }
 
+  // This function is call when admin click on delte button.
   async handleClick(id) {
     await this.props.del(id);
     window.location.href = '/dashboard';
   }
 
+  // This function is call when admin click on pagination.
   async nextPage(pageNumber) {
     const { search, filterRole } = this.state;
     await this.props.list(pageNumber, search, filterRole);
     await this.setState({currentPage: pageNumber});
   }
 
+  // This function is call when admin wants to filter data by search query for by role.
   async filterUsers(event, filterBy='') {
     event.preventDefault();
     if(filterBy === 'role') {
@@ -52,10 +57,12 @@ class ListUserContainer extends Component {
     await this.props.list(1, search, filterRole);
   }
 
+  // It will handle change in inputs and set state according to inserted input value.
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value })
   }
 
+  // It will render component which is display UI.
   render() {
     return (
       <ListUserComponent {...this.state} 

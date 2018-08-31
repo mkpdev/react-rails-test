@@ -26,6 +26,8 @@ class LoginContainer extends Component {
     }
   }
 
+  // It will call whenever any changes detected in props or state. 
+  // Used to manage state on receiving new response.
   async componentDidUpdate() {
     const { currentUser, errors } = this.props;
     if(currentUser) {
@@ -39,17 +41,20 @@ class LoginContainer extends Component {
     }
   }
 
+  // It will handle change in inputs and set state according to inserted input value.
   handleChange(event){
     event.preventDefault();
     this.setState({[event.target.name]:event.target.value});
   }
 
+  // This function dispatch login action with given email, password
   async handleSubmit(event) {
     event.preventDefault();
     const { email, password } = this.state;
     this.props.login({ email, password });
   }
 
+  // It will render component which is display UI.
   render() {
     return(
       <LoginComponent {...this.state} 

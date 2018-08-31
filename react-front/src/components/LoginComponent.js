@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// It is presentational UI for Login page.
 export const LoginComponent = props =>
   (
     <div className="container">

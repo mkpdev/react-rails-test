@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// It is presentational UI for signup page.
 export const SignupComponent = props =>
 (
 	<div className="container">

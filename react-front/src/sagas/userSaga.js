@@ -7,9 +7,9 @@ import { CREATE_USER, CREATE_USER_SUCCEED, CREATE_USER_FAILED,
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { createUser, listUser, editUser, fetchUser, deleteUser } from '../apis/user';
 
+// Manage response of create user api call and return it to reducers based of success/faliure.
 function* create (action) {
   const response = yield call(createUser, action);
-      console.log("saga", response);
   if(response.status === 200) {
     yield put({ type: CREATE_USER_SUCCEED, user: response.data });
   }
@@ -18,6 +18,7 @@ function* create (action) {
   }
 }
 
+// Manage response of list user api call and return it to reducers based of success/faliure.
 function* list (action) { 
   const response = yield call(listUser, action);
   if(response.status === 200) {
@@ -29,6 +30,7 @@ function* list (action) {
   }
 }
 
+// Manage response of edit user api call and return it to reducers based of success/faliure.
 function* edit (action) {
   const response = yield call(editUser, action);
   if(response.status === 200) {
@@ -39,6 +41,7 @@ function* edit (action) {
   }
 }
 
+// Manage response of fetch user api call and return it to reducers based of success/faliure.
 function* fetch (action) {
   const response = yield call(fetchUser, action);
   if(response.status === 200) {
@@ -49,6 +52,7 @@ function* fetch (action) {
   }
 }
 
+// Manage response of delete user api call and return it to reducers based of success/faliure.
 function* del (action) {
   const response = yield call(deleteUser, action);
   if(response.status === 200) {
@@ -59,6 +63,7 @@ function* del (action) {
   }
 }
 
+// take latest request as per dispatched action and functions accordingly.
 export const userSaga = [
   takeLatest(CREATE_USER, create),
   takeLatest(EDIT_USER, edit),
