@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './App.css';
 import SignupContainer from'./containers/SignupContainer';
 import LoginContainer from './containers/LoginContainer';
 import AddEditUserContainer from './containers/AddEditUserContainer';
